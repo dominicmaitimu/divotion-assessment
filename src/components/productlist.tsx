@@ -15,8 +15,7 @@ export const Productlist = ({
   if (!filteredProducts) return <p>Geen producten gevonden</p>;
 
   return (
-    <div>
-      <h2>Producten</h2>
+    <div className="mt-4">
       <ul className="grid grid-cols-5 gap-4">
         {filteredProducts.map((product) => {
           const isInWishlist = handleIsInWishlist(product.id!);

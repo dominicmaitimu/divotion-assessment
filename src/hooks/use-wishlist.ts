@@ -12,6 +12,7 @@ export function useWishlist() {
 
   const [wishlist, setWishlist] =
     useState<{ id: number; quantity: number }[]>(getInitialWishlist);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(wishlist));
@@ -24,6 +25,10 @@ export function useWishlist() {
       ),
     [products, wishlist],
   );
+
+  const handleToggleWishlist = useCallback(() => {
+    setIsWishlistOpen((prev) => !prev);
+  }, []);
 
   const handleAddToWishlist = useCallback((productId: number) => {
     setWishlist((prevWishlist) => {
@@ -71,9 +76,11 @@ export function useWishlist() {
   return {
     currentWishlist,
     handleAddToWishlist,
+    handleGetQuantityInWishlist,
     handleIsInWishlist,
     handleRemoveFromWishlist,
+    handleToggleWishlist,
     handleUpdateQuantityInWishlist,
-    handleGetQuantityInWishlist,
+    isWishlistOpen,
   };
 }

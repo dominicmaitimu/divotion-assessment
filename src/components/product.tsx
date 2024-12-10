@@ -1,5 +1,4 @@
 interface Props {
-  currency?: string;
   description: string;
   handleAddToWishlist?: () => void;
   handleGetQuantityInWishlist?: (productId: number) => number;
@@ -16,7 +15,7 @@ interface Props {
   isInWishlist?: boolean;
   isWishlistItem?: boolean;
   name: string;
-  price: number;
+  price: string;
   sku: string;
   stock?: number;
   url: string;
@@ -32,8 +31,8 @@ export const Product = ({ ...product }: Props) => (
           className="w-full h-full object-cover object-center"
         />
       </div>
-      <div className="block">
-        <h3>{product.name}</h3>
+      <div className="pt-2 block">
+        <h3 className="text-xl">{product.name}</h3>
         <p>{product.description}</p>
         <span>{product.price}</span>
       </div>
