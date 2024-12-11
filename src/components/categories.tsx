@@ -1,9 +1,9 @@
-interface Props {
-  categories: { id: number; name: string; slug: string }[];
-  handleFilterProducts: (category?: number) => void;
-}
+import { useProductContext } from '../context';
 
-export const Categories = ({ categories, handleFilterProducts }: Props) => {
+export const Categories = () => {
+  const { categories, currentCategory, handleFilterProducts } =
+    useProductContext();
+
   if (categories.length === 0) return;
 
   return (
@@ -13,7 +13,7 @@ export const Categories = ({ categories, handleFilterProducts }: Props) => {
           <li>
             <button
               onClick={() => handleFilterProducts()}
-              className="h-6 uppercase px-4 underline"
+              className={`h-6 uppercase px-4 hover:underline ${currentCategory === null ? 'underline' : ''}`}
             >
               All
             </button>
@@ -22,7 +22,7 @@ export const Categories = ({ categories, handleFilterProducts }: Props) => {
             <li key={category.id} className="border-l-2 border-gray-800">
               <button
                 onClick={() => handleFilterProducts(category.id)}
-                className="h-6 uppercase px-4"
+                className={`h-6 uppercase px-4 hover:underline ${currentCategory === category.id ? 'underline' : ''}`}
               >
                 {category.name}
               </button>

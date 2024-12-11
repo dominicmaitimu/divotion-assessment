@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
     min-height: 100vh;
     border: 0.625rem solid black;
     padding: 0 60px;

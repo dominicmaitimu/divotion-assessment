@@ -1,22 +1,15 @@
 import { Product } from './product.tsx';
-import { ComponentProps } from 'react';
+import { useProductContext, useWishlistContext } from '../context.tsx';
 
-interface Props {
-  filteredProducts: ComponentProps<typeof Product>[];
-  handleAddToWishlist: (productId: number) => void;
-  handleIsInWishlist: (productId: number) => boolean;
-}
+export const Productlist = () => {
+  const { filteredProducts } = useProductContext();
+  const { handleAddToWishlist, handleIsInWishlist } = useWishlistContext();
 
-export const Productlist = ({
-  filteredProducts,
-  handleAddToWishlist,
-  handleIsInWishlist,
-}: Props) => {
   if (!filteredProducts) return <p>Geen producten gevonden</p>;
 
   return (
-    <div className="mt-4">
-      <ul className="grid grid-cols-5 gap-4">
+    <div className="mt-8">
+      <ul className="grid grid-cols-4 gap-8">
         {filteredProducts.map((product) => {
           const isInWishlist = handleIsInWishlist(product.id!);
 
